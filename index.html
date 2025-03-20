@@ -17,8 +17,10 @@
 <div class="carousel-container">
     <p class="description" id="description"></p>
     <div id="carousel"></div>
-    <button class="nav-button" onclick="prevSlide()">&#10094; Prev</button>
-    <button class="nav-button" onclick="nextSlide()">Next &#10095;</button>
+    <div style="margin-top: 30px">
+        <button class="nav-button" onclick="prevSlide()">&#10094; Prev</button>
+        <button class="nav-button" onclick="nextSlide()">Next &#10095;</button>
+    </div>
 </div>
 
 <script>
@@ -39,7 +41,8 @@
     function showSlide(index) {
         const carousel = document.getElementById("carousel");
         const description = document.getElementById("description");
-        description.style.marginTop = "20px";
+        description.style.marginTop = "60";
+        description.style.marginTop = "30px";
         carousel.innerHTML = "";
 
         const { file, description: desc } = files[index];
