@@ -14,64 +14,63 @@
     </style>
 </head>
 <body>
-    <div class="carousel-container">
-        <p class="description" id="description">Description for beer_cooking_stand.jpg</p>
-        <div id="carousel"></div>
-        <button class="nav-button" onclick="prevSlide()">&#10094; Prev</button>
-        <button class="nav-button" onclick="nextSlide()">Next &#10095;</button>
-    </div>
+<div class="carousel-container">
+    <p class="description" id="description"></p>
+    <div id="carousel"></div>
+    <button class="nav-button" onclick="prevSlide()">&#10094; Prev</button>
+    <button class="nav-button" onclick="nextSlide()">Next &#10095;</button>
+</div>
 
-    <script>
-        const files = [
-            "beer_cooking_stand.jpg",
-            "projector_screen.mp4",
-            "cat_stairs.jpg",
-            "wooden_table.jpg",
-            "chair.jpg",
-            "mangal_cabin.jpg",
-            "living_room_table.jpg",
-            "corner_shelves_thing.jpg",
-            "kitchen_counter_and_shelf.jpg"
-        ];
+<script>
+    const files = [
+        { file: "beer_cooking_stand.jpg", description: "Description for beer_cooking_stand.jpg" },
+        { file: "projector_screen.mp4", description: "Description for projector_screen.mp4" },
+        { file: "cat_stairs.jpg", description: "Description for cat_stairs.jpg" },
+        { file: "wooden_table.jpg", description: "Description for wooden_table.jpg" },
+        { file: "chair.jpg", description: "Description for chair.jpg" },
+        { file: "mangal_cabin.jpg", description: "Description for mangal_cabin.jpg" },
+        { file: "living_room_table.jpg", description: "Description for living_room_table.jpg" },
+        { file: "corner_shelves_thing.jpg", description: "Description for corner_shelves_thing.jpg" },
+        { file: "kitchen_counter_and_shelf.jpg", description: "Description for kitchen_counter_and_shelf.jpg" }
+    ];
 
-        let currentIndex = 0;
+    let currentIndex = 0;
 
-        function showSlide(index) {
-            const carousel = document.getElementById("carousel");
-            const description = document.getElementById("description");
-            carousel.innerHTML = "";
+    function showSlide(index) {
+        const carousel = document.getElementById("carousel");
+        const description = document.getElementById("description");
+        carousel.innerHTML = "";
 
-            const file = files[index];
-            const ext = file.split(".").pop();
-            let mediaElement;
+        const { file, description: desc } = files[index];
+        const ext = file.split(".").pop();
+        let mediaElement;
 
-            if (ext === "mp4") {
-                mediaElement = document.createElement("video");
-                mediaElement.src = file;
-                mediaElement.controls = true;
-            } else {
-                mediaElement = document.createElement("img");
-                mediaElement.src = file;
-            }
-
-            mediaElement.classList.add("carousel-item");
-            carousel.appendChild(mediaElement);
-            description.innerText = `Description for ${file}`;
+        if (ext === "mp4") {
+            mediaElement = document.createElement("video");
+            mediaElement.src = file;
+            mediaElement.controls = true;
+        } else {
+            mediaElement = document.createElement("img");
+            mediaElement.src = file;
         }
 
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % files.length;
-            showSlide(currentIndex);
-        }
+        mediaElement.classList.add("carousel-item");
+        carousel.appendChild(mediaElement);
+        description.innerText = desc;
+    }
 
-        function prevSlide() {
-            currentIndex = (currentIndex - 1 + files.length) % files.length;
-            showSlide(currentIndex);
-        }
-
-        // Show the first slide initially
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % files.length;
         showSlide(currentIndex);
-    </script>
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + files.length) % files.length;
+        showSlide(currentIndex);
+    }
+
+    // Show the first slide initially
+    showSlide(currentIndex);
+</script>
 </body>
 </html>
-
